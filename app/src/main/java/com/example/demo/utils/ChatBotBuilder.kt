@@ -1,11 +1,10 @@
-package com.example.demo
+package com.example.demo.utils
 
 import com.aldebaran.qi.Future
 import com.aldebaran.qi.sdk.QiContext
 import com.aldebaran.qi.sdk.`object`.conversation.Chat
 import com.aldebaran.qi.sdk.`object`.conversation.QiChatbot
 import com.aldebaran.qi.sdk.`object`.conversation.Topic
-import com.aldebaran.qi.sdk.`object`.conversation.TopicStatus
 import com.aldebaran.qi.sdk.`object`.locale.Locale
 import com.aldebaran.qi.sdk.builder.ChatBuilder
 
@@ -45,6 +44,11 @@ class ChatBotBuilder(
     fun setLocaleVariable(locale: Locale){
         this.locale = locale
         build()
+    }
+
+    @JvmName("getChat1")
+    fun getChat() : Chat{
+        return chat
     }
 
 }

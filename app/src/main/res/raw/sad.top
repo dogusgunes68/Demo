@@ -1,8 +1,12 @@
-topic: ~right()
+topic: ~sad()
 # Defining extra concepts out of words or group of words
 #concept:(hello) [hello hi hey "good morning" greetings]
 
 # Replying to speech
 #u:(~hello) ~hello
 
-concept:(right) ["afer, doğru" "doğru cevap"]
+concept:(right) ["aferin, doğru" "doğru cevap"]
+concept:(cevap) [üzgün üzülmüş]
+
+u:(~cevap) ~right
+u:(none) yanlış

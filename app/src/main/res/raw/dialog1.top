@@ -1,0 +1,12 @@
+topic: ~dialog1()
+# Defining extra concepts out of words or group of words
+#concept:(hello) [hello hi hey "good morning" greetings]
+
+# Replying to speech
+#u:(~hello) ~hello
+
+proposal:Betül’ün oyuncak bebeği kırılmış. Betül oyuncak bebeği kırıldığında kendini nasıl hissediyor?
+   u1:(üzgün) aferin doğru
+   u1:(none) yanlış
+
+u:(başla) başlıyoruuz

@@ -1,13 +1,16 @@
-package com.example.demo
+package com.example.demo.viewmodel
 
 import android.app.Application
-import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
+import com.example.demo.ImageModel
+import com.example.demo.room.ImageDao
+import com.example.demo.room.ImageDatabase
 import com.example.demo.service.ImageDataService
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.observers.DisposableSingleObserver
 import io.reactivex.schedulers.Schedulers
+import kotlinx.coroutines.launch
 
 class ImageViewModel(application: Application) : BaseViewModel(application) {
     var images = MutableLiveData<List<ImageModel>>()
@@ -50,6 +53,32 @@ class ImageViewModel(application: Application) : BaseViewModel(application) {
 
             })
         )
+    }
+
+     fun storeInSQLite(list : List<ImageModel>){
+        launch {
+            val imageDao = ImageDatabase(getApplication()).imageDao()
+            imageDao.deleteAllImages()
+            val listLong = imageDao.insertAll(*list.toTypedArray())
+            var i=0
+            while (i < list.size){
+                list[i].uuid = listLong[i].toInt()
+                i++
+            }
+
+            //images.value = list
+
+        }
+    }
+
+     fun getAllImagesFromSQLite(){
+        launch {
+            val imageDao = ImageDatabase(getApplication()).imageDao()
+            val list = imageDao.getAllImages()
+            println("Image List")
+            println(list)
+            images.value = list
+        }
     }
 
 

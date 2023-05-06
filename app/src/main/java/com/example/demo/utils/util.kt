@@ -12,7 +12,6 @@ fun ImageView.downloadPic(url:String?, placeHolder: CircularProgressDrawable){
 
     val options = RequestOptions().placeholder(placeHolder).error(R.mipmap.ic_launcher_round)
     Glide.with(context).setDefaultRequestOptions(options).load(url.toString()).into(this)
-    println("util url:"+url)
 
 }
 

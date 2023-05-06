@@ -1,0 +1,12 @@
+topic: ~betul()
+
+proposal: %one Betül’ün oyuncak bebeği kırılmış. ^goto(two)
+proposal: %two Betül, oyuncağı kırıldığında kendini üzgün hissediyor. ^goto(three)
+proposal: %three Betül oyuncak bebeği kırıldığında kendini nasıl hissediyor?
+proposal: %wrong Betül kendini üzgün hisseder.
+   u:(e:Dialog/NotUnderstood) ^goto(wrong)
+   u:(e:Dialog/SpeakFailure) Bunu cevaplayamam
+   u:(başla) ^goto(one)
+   u:(üzgün) doğru cevap
+   #$wrongOrTimedOut==true  #10sn sonra ya da yanlış cevap verirse bu cevap verilcek.
+

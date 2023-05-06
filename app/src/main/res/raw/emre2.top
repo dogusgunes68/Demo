@@ -1,0 +1,12 @@
+topic: ~emre_araba2()
+# Defining extra concepts out of words or group of words
+#concept:(hello) [hello hi hey "good morning" greetings]
+
+# Replying to speech
+#u:(~hello) ~hello
+
+proposal: %one Resime bak. ^goto(two)
+proposal: %two Emre kendini nasıl hissediyor? Söyle. ^goto(three)
+proposal: %three Emre kendini nasıl hissediyor göster.
+   u:(e:Dialog/SpeakFailure) Bunu cevaplayamam
+   u:(başla) ^goto(one)

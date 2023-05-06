@@ -23,6 +23,7 @@ class ChatBotBuilder(
             .withLocale(locale)
             .build()
         chatFuture = chat.async().run()
+
         return chatFuture
     }
 

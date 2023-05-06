@@ -28,7 +28,7 @@ abstract class ImageDatabase : RoomDatabase(){
         ).build()
 
         private fun getAndCopyAssetDatabase(context: Context) {
-            context.assets.open("image.db").copyTo(
+            context.assets.open("Pepper.db").copyTo(
                 FileOutputStream(context.getDatabasePath("imagedb")),
                 (8 * 1024)
             )

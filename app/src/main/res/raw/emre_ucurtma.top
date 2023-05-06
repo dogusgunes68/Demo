@@ -1,0 +1,17 @@
+topic: ~emre_ucurtma()
+# Defining extra concepts out of words or group of words
+#concept:(hello) [hello hi hey "good morning" greetings]
+
+# Replying to speech
+#u:(~hello) ~hello
+
+
+proposal: %one Emre’nin uçurtması tellere takılmış. ^goto(two)
+proposal: %two Emre, uçurtması tellere takıldığında kendini üzgün hissediyor. ^goto(three)
+proposal: %three Emre’nin uçurtması tellere takıldığında kendini nasıl hisseder?
+proposal: %wrong Emre kendini üzgün hisseder.
+   u:(e:Dialog/NotUnderstood) ^goto(wrong)
+   u:(e:Dialog/SpeakFailure) Bunu cevaplayamam
+   u:(başla) ^goto(one)
+   u:(üzgün) aferin
+   #$wrongOrTimedOut==true  #10sn sonra ya da yanlış cevap verirse bu cevap verilcek.

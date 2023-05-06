@@ -1,7 +1,7 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
-    id 'kotlin-android-extensions'
+    //id 'kotlin-android-extensions'
     id 'kotlin-kapt'
 }
 
@@ -14,7 +14,7 @@ android {
         minSdk 23
         targetSdk 32
         versionCode 1
-        versionName "1.0"
+        versionName "1.1"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -39,6 +39,7 @@ android {
 
 }
 
+
 //def retrofitVersion = '2.6.0'
 def lifecycle_version = "2.4.0"
 
@@ -51,7 +52,8 @@ def rxJavaVersion = '2.2.8'
 def rxAndroidVersion = '2.1.1'
 def navVersion = '2.3.3'
 def preference_version = "1.1.1"
-def room_version = "2.0.0-alpha1"
+def room_version = "2.5.1"
+
 
 dependencies {
 
@@ -97,6 +99,7 @@ dependencies {
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation 'com.google.android.material:material:1.1.0-alpha04'
 
+
     implementation "android.arch.lifecycle:extensions:$lifeCycleExtensionVersion"
 
     implementation "androidx.legacy:legacy-support-v4:1.0.0"
@@ -113,6 +116,8 @@ dependencies {
     implementation "com.android.support:design:$supportVersion"
     implementation "androidx.preference:preference-ktx:$preference_version"
 
+
+
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.4.1'
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.4.1'
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0"
@@ -122,18 +127,19 @@ dependencies {
     implementation 'com.aldebaran:qisdk:1.7.5'
     implementation 'com.aldebaran:qisdk-design:1.7.5'
 
-   // implementation "androidx.room:room-runtime:2.2.6"
-    //implementation "androidx.room:room-compiler:2.2.6"
-    //implementation "androidx.room:room-ktx:2.2.6"
+     implementation "androidx.room:room-runtime:2.2.6"
+    implementation "androidx.room:room-compiler:2.2.6"
+    implementation "androidx.room:room-ktx:2.2.6"
 
 
-
-
-    implementation "androidx.room:room-runtime:$room_version"
-    implementation "androidx.room:room-compiler:$room_version"
+    //implementation("androidx.room:room-runtime:$room_version")
+    //annotationProcessor("androidx.room:room-compiler:$room_version")
 
     // To use Kotlin annotation processing tool (kapt)
-    //implementation("androidx.room:room-compiler:$room_version")
+    //kapt("androidx.room:room-compiler:$room_version")
+
+
+
 
 
 

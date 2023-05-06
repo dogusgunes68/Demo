@@ -8,6 +8,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 class ImageDataService {
     //http://localhost:5090/Pepper/1
+    /*
     private val api = Retrofit.Builder()
         .baseUrl("http://10.0.2.2:5090/")
         .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
@@ -22,5 +23,7 @@ class ImageDataService {
     fun getDataById(id:Int):Single<ImageModel>{
         return api.getImageById(id)
     }
+
+     */
 
 }

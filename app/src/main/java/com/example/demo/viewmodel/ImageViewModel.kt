@@ -6,6 +6,10 @@ import com.example.demo.ImageModel
 import com.example.demo.room.ImageDao
 import com.example.demo.room.ImageDatabase
 import com.example.demo.service.ImageDataService
+import com.example.demo.sqlite.Database
+import com.example.demo.sqlite.ImageDbHelper
+import com.example.demo.sqlite.ReadableDatabase
+import com.example.demo.sqlite.WritableDatabase
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.observers.DisposableSingleObserver
@@ -13,12 +17,16 @@ import io.reactivex.schedulers.Schedulers
 import kotlinx.coroutines.launch
 
 class ImageViewModel(application: Application) : BaseViewModel(application) {
-    var images = MutableLiveData<List<ImageModel>>()
-    var image = MutableLiveData<ImageModel>()
+     var images = MutableLiveData<List<ImageModel>>()
+     var image = MutableLiveData<ImageModel>()
 
     var service = ImageDataService()
     var compositeDisposable = CompositeDisposable()
 
+    var dbHelper = ImageDbHelper(application.applicationContext)
+    var database = Database(dbHelper)
+
+    /*
      fun getAllData(){
         compositeDisposable.add(service.getAllData()
             .subscribeOn(Schedulers.newThread())
@@ -36,6 +44,7 @@ class ImageViewModel(application: Application) : BaseViewModel(application) {
             })
         )
     }
+
 
     fun getDataById(id:Int){
         compositeDisposable.add(service.getDataById(id)
@@ -55,29 +64,31 @@ class ImageViewModel(application: Application) : BaseViewModel(application) {
         )
     }
 
-     fun storeInSQLite(list : List<ImageModel>){
-        launch {
-            val imageDao = ImageDatabase(getApplication()).imageDao()
-            imageDao.deleteAllImages()
-            val listLong = imageDao.insertAll(*list.toTypedArray())
-            var i=0
-            while (i < list.size){
-                list[i].uuid = listLong[i].toInt()
-                i++
-            }
 
-            //images.value = list
+     */
+
+    fun deleteAllImages(){
+        launch {
+            database.deleteAllImages()
+        }
+    }
+
+     fun storeInSQLite(){
+        launch {
+            database.fillDatabase()
+        }
+    }
+    fun getImageFromSqlite(arg : String){
+        launch {
+            image.value = database.getImageDataFromSqlite(arg)
+            println(image.value)
 
         }
     }
 
      fun getAllImagesFromSQLite(){
         launch {
-            val imageDao = ImageDatabase(getApplication()).imageDao()
-            val list = imageDao.getAllImages()
-            println("Image List")
-            println(list)
-            images.value = list
+           images.value = database.getAllImageDataFromSqlite()
         }
     }
 

@@ -1,0 +1,17 @@
+topic: ~emre_araba()
+# Defining extra concepts out of words or group of words
+#concept:(hello) [hello hi hey "good morning" greetings]
+
+# Replying to speech
+#u:(~hello) ~hello
+
+proposal: %one Emrenin arabası kırılmış. ^goto(two)
+proposal: %two Emre, arabası kırıldığında kendini üzgün hissediyor. ^goto(three)
+proposal: %three Emre’nin arabası kırıldığında kendini nasıl hisseder?
+proposal: %wrong Emre kendini üzgün hisseder.
+   u:(e:Dialog/NotUnderstood) ^goto(wrong)
+   u:(e:Dialog/SpeakFailure) Bunu cevaplayamam
+   u:(başla) ^goto(one)
+   u:(üzgün) aferin
+   #$wrongOrTimedOut==true  #10sn sonra ya da yanlış cevap verirse bu cevap verilcek.
+
